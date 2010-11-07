@@ -1,0 +1,64 @@
+alignment top_left
+background no
+gap_x 10
+gap_y 15
+minimum_size 200 5
+maximum_width 200
+
+update_interval 1
+total_run_times 0
+double_buffer yes
+no_buffers yes
+text_buffer_size 1248
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+use_xft yes
+xftfont HanelGotD:size=9
+xftalpha 0.5
+override_utf8_locale yes
+
+own_window yes
+own_window_type desktop
+own_window_transparent yes
+own_window_hints below,undecorated,sticky,skip_taskbar,skip_pager
+#below,  normal  override
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+default_color 86b5ea
+#default_shade_color 7a999c
+default_outline_color green
+
+#MD0: ${alignr}${fs_used /mnt/disks} / ${fs_size /mnt/disks}
+#${color slate grey}/var/log/everything.log:
+#${color}${exec tail -n33 /var/log/everything.log}
+#${font Sans:normal:size=7}${color1}${exec dmesg | uniq | tail -n 5}
+
+TEXT
+
+${offset 4}${voffset -3}${color ffffff}${font URW Gothic L:size=60}${time %I}
+${offset 100}${voffset -125}${color ffffff}${font URW Gothic L:size=32}${time :%M}
+${offset 165}${voffset -73}${color #9ebcd7}${font URW Gothic L:size=13}${time %S}${color}
+${offset 165}${voffset -7}${color ffffff}${font URW Gothic L:size=13}${time :%P}${color}
+
+#${font Liberation Mono:normal:size=10}${exec cal}
+
+${font Liberation Mono:normal:size=12}${execpi 300 ~/.scripts/calendar.sh}
+
+ ${color ffffff}${font ConkyWeather:size=55}${execi 600 conkyForecast --location=USOH0722 --datatype=WF}${font Liberation Mono:size=32} ${voffset -15}${execi 600 conkyForecast --location=USOH0722 --imperial --hideunits --datatype=HT}${font}${color}
+
+${alignc}${font URW Gothic L:bold:size=10}${execi 600 conkyForecast --location=USOH0722 --datatype=CT}    ${execi 3600 conkyForecast --location=USOH0722 --datatype=HT --imperial --hideunits --startday=0 --endday=0}/ ${execi 3600 conkyForecast --location=USOH0722 --datatype=LT --imperial --hideunits --startday=0 --endday=0}${font}   
+
+${color lightgrey}${font URW Gothic L:size=10}${execi 600 conkyForecast --location=USOH0722  --datatype=PC --startday=0 --endday=0} chance of precipitation
+
+${execi 600 conkyForecast --location=USOH0722  --datatype=HM} humidity  ${alignr}Wind ${execi 600 conkyForecast --location=USOH0722  --imperial --startday=0 --datatype=WS}
+${execi 600 conkyForecast --location=USOH0722  --datatype=BD} pressure  ${alignr 10}${execi 600 conkyForecast --location=USOH0722  --imperial --hideunits --startday=0 --datatype=WD}
+
+${font Moon Phases:size=20}${execi 3600 conkyForecast --location=USOH0722 --datatype=MF} ${font}${font URW Gothic L:bold:size=10}${voffset -10}${execi 3600 conkyForecast --location=USOH0722 --datatype=MP}${font}
+
+${font URW Gothic L:size=10}${alignc 10}Sunrise ${execi 600 conkyForecast --location=USOH0722 --startday=0 --datatype=SR}
